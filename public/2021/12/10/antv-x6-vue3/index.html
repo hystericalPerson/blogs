@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>antv x6+vue3 demo | 🐏的杂货铺</title><meta name="keywords" content="X6,vue3"><meta name="author" content="The Madman"><meta name="copyright" content="The Madman"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言一个自定义流程图编辑器，antv-X6 + vue3 实现。由于项目实现完挺久的，简单的记录一下 说明项目地址项目地址https:&#x2F;&#x2F;github.com&#x2F;hystericalPerson&#x2F;vue3-x6-editor-demo 功能点 左侧组件 基本组件 流程库 节点库   中间展示部分 右侧关于节点的描述（双向绑定node-data中的数据）  设计思路按照页面布局，简单的划分3个组件。g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="antv x6+vue3 demo">
+<meta property="og:url" content="https://hystericalperson.github.io/2021/12/10/antv-x6-vue3/index.html">
+<meta property="og:site_name" content="🐏的杂货铺">
+<meta property="og:description" content="前言一个自定义流程图编辑器，antv-X6 + vue3 实现。由于项目实现完挺久的，简单的记录一下 说明项目地址项目地址https:&#x2F;&#x2F;github.com&#x2F;hystericalPerson&#x2F;vue3-x6-editor-demo 功能点 左侧组件 基本组件 流程库 节点库   中间展示部分 右侧关于节点的描述（双向绑定node-data中的数据）  设计思路按照页面布局，简单的划分3个组件。g">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hystericalperson.github.io/img/img3.jpg">
+<meta property="article:published_time" content="2021-12-10T03:21:23.000Z">
+<meta property="article:modified_time" content="2021-12-13T06:40:56.008Z">
+<meta property="article:author" content="The Madman">
+<meta property="article:tag" content="X6">
+<meta property="article:tag" content="vue3">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hystericalperson.github.io/img/img3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hystericalperson.github.io/2021/12/10/antv-x6-vue3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'antv x6+vue3 demo',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-13 14:40:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/img7.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/img3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">🐏的杂货铺</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">antv x6+vue3 demo</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-10T03:21:23.000Z" title="发表于 2021-12-10 11:21:23">2021-12-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-13T06:40:56.008Z" title="更新于 2021-12-13 14:40:56">2021-12-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/demo/">demo</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一个自定义流程图编辑器，antv-X6 + vue3 实现。<br>由于项目实现完挺久的，简单的记录一下<br><img src="/images/img1.png" alt="demo页面"></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><a target="_blank" rel="noopener" href="https://github.com/hystericalPerson/vue3-x6-editor-demo">项目地址</a><br><a target="_blank" rel="noopener" href="https://github.com/hystericalPerson/vue3-x6-editor-demo">https://github.com/hystericalPerson/vue3-x6-editor-demo</a></p>
+<h4 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h4><ol>
+<li>左侧组件<ul>
+<li>基本组件</li>
+<li>流程库</li>
+<li>节点库</li>
+</ul>
+</li>
+<li>中间展示部分</li>
+<li>右侧关于节点的描述（双向绑定<code>node-data</code>中的数据）</li>
+</ol>
+<h4 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h4><p>按照页面布局，简单的划分3个组件。<code>graph</code>,<code>nodeDesc</code>,<code>dnd</code></p>
+<h5 id="graph"><a href="#graph" class="headerlink" title="graph"></a>graph</h5><ol>
+<li>创建组件<code>graph</code>,并将其配置化代码存入<code>config.js</code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">editor.graph = new Graph(&#123;</span><br><span class="line">    ...createDefaultSetting(props.graphId, `$&#123;props.graphId&#125;map`)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">createDefaultSetting为配置化文件的引入</span><br></pre></td></tr></table></figure></li>
+<li>绑定需要的画布事件函数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 绑定画布的键盘事件</span><br><span class="line">const bindKey = () =&gt; &#123;</span><br><span class="line">    bindKeyCopy()</span><br><span class="line">    bindKeyPaste()</span><br><span class="line">    bindKeyShear()</span><br><span class="line">    bindKeyUndo()</span><br><span class="line">    bindKeyRedo()</span><br><span class="line">    bindKeySelectAll()</span><br><span class="line">    bindKeyDel()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="dnd"><a href="#dnd" class="headerlink" title="dnd"></a>dnd</h5><p>在左侧组件部分选用<code>dnd</code>，而不是选用<code>step</code><br><code>dnd</code>和<code>step</code>的优劣势对比：</p>
+<ul>
+<li><code>step</code>是内置封装好的组件，容易上手。但是不好拓展</li>
+<li><code>dnd</code>可定制化开发，更容易扩展。可根据选用的预研进行<code>vue</code>或<code>react</code>的开发</li>
+</ul>
+<p><strong>重难点</strong></p>
+<ul>
+<li>在创建节点上，运用vue开发，因此必需使用<code>Graph.registerVueComponent</code>。如果只是采用<code>createNode</code>去进行创建，会在编辑情况下出现节点空白的BUG</li>
+<li>由于需要与右侧的节点数据展示关联以及vue3组件的data存入在<code>dnd.vue</code>中.因此每当点击节点的时候需要判断并处理在父页面创建的<code>cmptCellInfo</code>对象。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//判断在对象中是否有此节点，没有则引入</span><br><span class="line"></span><br><span class="line">this.currentId = this.$el.closest(&#x27;[data-shape=vue-shape]&#x27;).getAttribute(&#x27;data-cell-id&#x27;)</span><br><span class="line">if (!this.cmptCellInfo[this.currentId]) &#123;</span><br><span class="line">    this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item))</span><br><span class="line">    cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(cellNodeInfo.value))</span><br><span class="line">    !cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item)))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">// 创建vue3组件</span><br><span class="line">const registerV3Comp = () =&gt; &#123;</span><br><span class="line">    for (const item in nodeInfo) &#123;</span><br><span class="line">        console.log(&#x27;into&#x27;)</span><br><span class="line">        Graph.registerVueComponent(`$&#123;item&#125;`, &#123;</span><br><span class="line">            template: `&lt;$&#123;item&#125; :info=&quot;cmptCellInfo[currentId]&quot;&gt;&lt;/$&#123;item&#125;&gt;`,</span><br><span class="line">            components: &#123;</span><br><span class="line">                [item]: nodeCmpt[item]</span><br><span class="line">            &#125;,</span><br><span class="line">            data () &#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    cmptCellInfo: cmptCellInfo,</span><br><span class="line">                    currentId: &#x27;&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted () &#123;</span><br><span class="line">                this.currentId = this.$el.closest(&#x27;[data-shape=vue-shape]&#x27;).getAttribute(&#x27;data-cell-id&#x27;)</span><br><span class="line">                if (!this.cmptCellInfo[this.currentId]) &#123;</span><br><span class="line">                    this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item))</span><br><span class="line">                    cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(cellNodeInfo.value))</span><br><span class="line">                    !cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item)))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>由于直接给节点的data赋值覆盖会导致视图没有渲染，所以<code>cmptCellInfo</code>中的所有属性都指向节点中的data对象</li>
+</ul>
+<ol>
+<li>创建dnd并与画布绑定，将公共的配置化代码放入<code>config.js</code>中<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const init = () =&gt; &#123;</span><br><span class="line">    createDnd()</span><br><span class="line">    registerV3Comp()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const createDnd = () =&gt; &#123;</span><br><span class="line">editor.dnd = new Addon.Dnd(&#123;</span><br><span class="line">    target: editor.graph,</span><br><span class="line">    getDropNode: (node) =&gt; &#123;</span><br><span class="line">        const cloneNode = node.clone(&#123; keepId: true &#125;)</span><br><span class="line">        cloneNode.data = cmptCellInfo[cloneNode.id]</span><br><span class="line">        // 清空选区</span><br><span class="line">        nextTick(() =&gt; &#123;</span><br><span class="line">            editor.graph.resetSelection(cloneNode)</span><br><span class="line">            cellClickCallback(cloneNode)</span><br><span class="line">        &#125;)</span><br><span class="line">        return cloneNode</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> // 创建vue3组件</span><br><span class="line">const registerV3Comp = () =&gt; &#123;</span><br><span class="line">    for (const item in nodeInfo) &#123;</span><br><span class="line">        console.log(&#x27;into&#x27;)</span><br><span class="line">        Graph.registerVueComponent(`$&#123;item&#125;`, &#123;</span><br><span class="line">            template: `&lt;$&#123;item&#125; :info=&quot;cmptCellInfo[currentId]&quot;&gt;&lt;/$&#123;item&#125;&gt;`,</span><br><span class="line">            components: &#123;</span><br><span class="line">                [item]: nodeCmpt[item]</span><br><span class="line">            &#125;,</span><br><span class="line">            data () &#123;</span><br><span class="line">                return &#123;</span><br><span class="line">                    cmptCellInfo: cmptCellInfo,</span><br><span class="line">                    currentId: &#x27;&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            mounted () &#123;</span><br><span class="line">                this.currentId = this.$el.closest(&#x27;[data-shape=vue-shape]&#x27;).getAttribute(&#x27;data-cell-id&#x27;)</span><br><span class="line">                if (!this.cmptCellInfo[this.currentId]) &#123;</span><br><span class="line">                    this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item))</span><br><span class="line">                    cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(cellNodeInfo.value))</span><br><span class="line">                    !cellNodeInfo.value &amp;&amp; (this.cmptCellInfo[this.currentId] = cloneDeep(defaultConfig(item)))</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, true)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>将组件绑定拖拽事件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const addCmptGraphNode = (type, info, e) =&gt; &#123;</span><br><span class="line">    if (onJudgeOnlyOneNode(type)) return</span><br><span class="line">    cellNodeInfo.value = info</span><br><span class="line">    const template = &#123;</span><br><span class="line">        ...nodeTypeConfig(type),</span><br><span class="line">        ...&#123;</span><br><span class="line">            components: &#123;</span><br><span class="line">                [type]: nodeCmpt[type]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    type === &#x27;cmptProcessNode&#x27; &amp;&amp; (template.width = 200)</span><br><span class="line">    const node = editor.graph.createNode(template)</span><br><span class="line">&#125;</span><br><span class="line">           </span><br></pre></td></tr></table></figure></li>
+<li>在编辑时候需要逐个将下发的节点信息与<code>cmptCellInfo</code>绑定，不可直接用<code>tojson</code>进行绑定。此外，节点的信息必需优先于线。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 清空数据 画布</span><br><span class="line">editor.graph.clearCells()</span><br><span class="line">for (const key in cmptCellInfo) &#123;</span><br><span class="line">    delete cmptCellInfo[key]</span><br><span class="line">&#125;</span><br><span class="line">cells.forEach(cell =&gt; &#123;</span><br><span class="line">    if (cell.shape !== &#x27;edge&#x27;) &#123;</span><br><span class="line">        cmptCellInfo[cell.id] = cloneDeep(cell.data)</span><br><span class="line">        editor.graph.addNode(cell)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">cells.forEach(cell =&gt; &#123;</span><br><span class="line">    if (cell.shape === &#x27;edge&#x27;) &#123;</span><br><span class="line">        editor.graph.addEdge(cell)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h5 id="nodeDesc"><a href="#nodeDesc" class="headerlink" title="nodeDesc"></a>nodeDesc</h5><p>将数据绑定即可</p>
+<p><strong>至此左中右的数据完成数据绑定。再根据业务需要自行处理</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">The Madman</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hystericalperson.github.io/2021/12/10/antv-x6-vue3/">https://hystericalperson.github.io/2021/12/10/antv-x6-vue3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://hystericalperson.github.io/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hystericalperson.github.io" target="_blank">🐏的杂货铺</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/X6/">X6</a><a class="post-meta__tags" href="/tags/vue3/">vue3</a></div><div class="post_share"><div class="social-share" data-image="/img/img3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2021/12/13/let%E5%92%8Cconst%E7%9A%84%E7%90%86%E8%A7%A3%E8%A1%A5%E5%85%85/"><img class="prev-cover" src="/img/img6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">let和const的理解补充</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/img7.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">The Madman</div><div class="author-info__description"></div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hystericalPerson"><i class="fab fa-github"></i><span>冲冲冲</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">公告就是没有公告</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="toc-number">2.0.1.</span> <span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%82%B9"><span class="toc-number">2.0.2.</span> <span class="toc-text">功能点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">2.0.3.</span> <span class="toc-text">设计思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#graph"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">graph</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#dnd"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">dnd</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nodeDesc"><span class="toc-number">2.0.3.3.</span> <span class="toc-text">nodeDesc</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/13/let%E5%92%8Cconst%E7%9A%84%E7%90%86%E8%A7%A3%E8%A1%A5%E5%85%85/" title="let和const的理解补充"><img src="/img/img6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="let和const的理解补充"/></a><div class="content"><a class="title" href="/2021/12/13/let%E5%92%8Cconst%E7%9A%84%E7%90%86%E8%A7%A3%E8%A1%A5%E5%85%85/" title="let和const的理解补充">let和const的理解补充</a><time datetime="2021-12-13T06:15:01.000Z" title="发表于 2021-12-13 14:15:01">2021-12-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/10/antv-x6-vue3/" title="antv x6+vue3 demo"><img src="/img/img3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antv x6+vue3 demo"/></a><div class="content"><a class="title" href="/2021/12/10/antv-x6-vue3/" title="antv x6+vue3 demo">antv x6+vue3 demo</a><time datetime="2021-12-10T03:21:23.000Z" title="发表于 2021-12-10 11:21:23">2021-12-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/img3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2021 By The Madman</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">madman's note</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div></body></html>
